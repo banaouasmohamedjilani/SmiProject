@@ -23,8 +23,8 @@
 		<primefaces.version>6.0</primefaces.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<quartz.version>2.2.1</quartz.version>
-		
 		<sourceEncoding>UTF-8</sourceEncoding>
+                <spring.security.version>4.2.1</spring.security.version>
 	</properties>
 
 	<dependencies>

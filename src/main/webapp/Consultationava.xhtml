@@ -2,23 +2,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head>
 
-    <body>
+    </head>
+    <body >
 
         <ui:composition template="./a.xhtml">
 
             <ui:define name="content">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-                            <div class="x_panel">
-                                <input type="text" value="aaaa"/>
-                                <input type="text" value="aaaa"/>
-                            </div>
+                <div class="row" >
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"  >
+
+                        
+                        <div ng-app="mApp" ng-controller="mainCtrl">
+                            <div class="x_panel"  >
+                            <input type="text" ng-model="limit"/>
+                        </div>
+                            <table class="table table-bordered table-striped table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th> Name</th>
+                                        <th> City</th>
+                                        <th> Country</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in list | filter:limit">
+                                        <td>{{x.Name}}</td>
+                                        <td>{{x.City}}</td>
+                                        <td>{{x.Country}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </ui:define>
 
         </ui:composition>
-
+        <!--AngularJs-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+        
+        <script src="resources/AgularJS/ControllerJs/ConsumtationAJs.js"></script>
     </body>
 </html>
