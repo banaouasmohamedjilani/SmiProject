@@ -35,16 +35,16 @@
 //$.getJSON(url, function (data) {
 //    console.log(data.message+"aaaa");
 //    
-//});
-$(document).ready(function() {
-    $.ajax({
-        url: "http://169.254.223.24:7258/Stb-Server-7.0/ref/allDeviseQ"
-    }).then(function(data, status, xhr) {
-        $.each(data,function(i,c){
-            console.log(c.codeDevise);
-        });
-       $('.greeting-id').append(data.codeDevise);
-       $('.greeting-content').append(data.content);
-       console.log(xhr);
-    });
-    });
+////});
+//$(document).ready(function() {
+//    $.ajax({
+//        url: "http://169.254.223.24:7258/Stb-Server-7.0/ref/allDeviseQ"
+//    }).then(function(data, status, xhr) {
+//        $.each(data,function(i,c){
+//            console.log(c.codeDevise);
+//        });
+//       $('.greeting-id').append(data.codeDevise);
+//       $('.greeting-content').append(data.content);
+//       console.log(xhr);
+//    });
+//    });
