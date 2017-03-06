@@ -19,8 +19,8 @@ myApp.controller("myController", function ($scope) {
 //    });
 myApp.controller("myctrl1",function($scope,$http){
         
-        $http.get("https://reqres.in/api/users?page=2").then(function(response){
-        $scope.objects = response.data.data;
+        $http.get("http://169.254.223.24:7258/STB_Serveur/ref/allAgence").then(function(response){
+        $scope.objects = response.data;
       console.log($scope.objects);
         
     });
@@ -28,8 +28,8 @@ myApp.controller("myctrl1",function($scope,$http){
 });
 myApp.controller("myctrl2",function($scope,$http){
         
-        $http.get("https://reqres.in/api/users?page=2").then(function(response){
-        $scope.objects = response.data.data;
+        $http.get("http://169.254.223.24:7258/STB_Serveur/ref/allDeviseQ").then(function(response){
+        $scope.objects = response.data;
       console.log($scope.objects);
         
     });

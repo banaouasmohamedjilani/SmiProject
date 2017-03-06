@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html  lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
@@ -23,11 +24,10 @@
     <body>
         <section class="container">
 			<section class="login-form">
-				<form method="post" action="" role="login">
-					<img src="" class="img-responsive" alt="" />
-                                        <input type="email" name="email" placeholder="Email" value="" class="form-control input-lg" />
-                                        <input type="password" name="password" placeholder="Password" value="" class="form-control input-lg" />
-					<button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+				<form>
+                                        <input type="text" name="email" placeholder="NoPieceClient" value="#{authentification.login}" class="form-control input-lg" />
+                                        <input type="password" name="password" placeholder="Password" value="#{authentification.password}" class="form-control input-lg" />
+                                        <input type="submit" class="btn btn-lg btn-primary btn-block"  value="Sign in" action="#{authentification.logon()}" />
 					
 				</form>
 			</section>
