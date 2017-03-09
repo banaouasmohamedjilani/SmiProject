@@ -20,7 +20,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 
 import smi.Utils.SessionUtils;
-import smi.controller.restconsume.refcontrollerrest;
+import smi.controller.restconsume.seccontrollerrest;
 import smi.model.securite.Client;
 
 @ManagedBean
@@ -33,6 +33,15 @@ public class Login implements Serializable {
 	private String msg;
         @ManagedProperty(value="#{user}")
 	private String user;
+        private Client c;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Client getC() {
+        return c;
+    }
 
 	public String getPwd() {
 		return pwd;
@@ -58,12 +67,15 @@ public class Login implements Serializable {
 		this.user = user;
 	}
 
+    public void setC(Client c) {
+        this.c = c;
+    }
+
 	//validate login
 	public String validateUsernamePassword() {
-		boolean valid = refcontrollerrest.validate(user, pwd);
+		boolean valid = seccontrollerrest.validate(user, pwd);
 		if (valid) {
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", user);
+			clientInfo();
 			return "Acceuil";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(
@@ -81,4 +93,23 @@ public class Login implements Serializable {
 		session.invalidate();
 		return "login.xhtml";
 	}
+        private Client cl = null;
+        
+        public Client clientInfo(){
+            HttpSession session = SessionUtils.getSession();
+            cl = (Client)session.getAttribute("user");
+            System.out.print(cl.getNom()+"aaaa");
+        return cl;
+        }
+
+    public Client getCl() {
+        return cl;
+    }
+
+    public void setCl(Client cl) {
+        this.cl = cl;
+    }
+        
+        
+        
 }
