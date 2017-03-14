@@ -7,7 +7,7 @@
     <head>
         <script src="resources/AgularJS/ControllerJs/AjoutBenefJs.js" type="text/javascript"></script>
         <script src="resources/AgularJS/Js/angular.js" type="text/javascript"></script>
-        
+       
     </head>
 
     <body class="nav-md" >
@@ -31,7 +31,7 @@
                                         </div>
                                         <div class="x_content">
                                             <br />
-                                            <div class="col-md-6 col-sm-12 col-xs-12" ng-controller="myctrl1">
+                                            <div class="col-md-12 col-sm-12 col-xs-12" ng-controller="myctrl1">
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-2 col-sm-4 col-xs-10">Agence</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="x_content">
                                             <br />
-                                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-2 col-sm-4 col-xs-10">Code</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6" ng-controller="myctrl2">
@@ -70,7 +70,7 @@
                                             </div>
                                             <div class="x_content">
                                                 <br />
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label class="control-label col-md-2 col-sm-4 col-xs-10">Compte</label>
                                                         <div class="col-md-6 col-sm-4 col-xs-6"> <select class="select2_group form-control">
@@ -97,10 +97,11 @@
                                             </div>
                                             <div class="x_content">
                                                 <br />
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label class="control-label col-md-2 col-sm-4 col-xs-10">Activite</label>
-                                                        <div class="col-md-6 col-sm-4 col-xs-6"> <select class="select2_group form-control">
+                                                        <div class="col-md-6 col-sm-4 col-xs-6">
+                                                            <select class="select2_group form-control">
                                                                 <optgroup label="Num de l'activite">
                                                                     <option value="AK">111111111</option>
                                                                     <option value="HI">222222222</option>
@@ -124,7 +125,7 @@
                                         <div class="x_content">
                                             <br />
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="overflow-x:scroll;" ng-controller="myController" >
-                                                <table id="datatable-responsive" class="table table-bordered table-striped table-hover " cellspacing="0" >
+                                                <table id="" class="table table-bordered table-striped table-hover " cellspacing="0" >
                                                     <thead>
                                                         <tr>
                                                             <th>type pieces</th>
@@ -134,17 +135,21 @@
                                                             <th>Adresse beneficiaire</th>
                                                             <th>Qualite</th>
                                                             <th>Etat</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody ng-repeat="u in users">
                                                         <tr >
                                                             <td>{{u.Typepiece}}</td>
                                                             <td>{{u.Numero}}</td>
-                                                            <td>{{u.DatePiece}}</td>
+                                                            <td>{{u.DatePiece | date:'dd-MM-yyyy'}}</td>
                                                             <td>{{u.Nom}}</td>
                                                             <td>{{u.Adresse}}</td>
                                                             <td>{{u.Qualite}}</td>
                                                             <td>{{u.Etat}}</td>
+                                                            <td><input type="button" class="btn btn-danger fa fa-angle-down"/></td>
+                                                            <td><input type="button" class="btn btn-danger fa fa-angle-down"/></td>
                                                             
                                                         </tr>
                                                     </tbody>
@@ -167,12 +172,12 @@
                                                                 <div class="form-group">
                                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Numero</label>
                                                                     <div class="col-md-8 col-sm-8 col-xs-8">
-                                                                        <input  class="form-control col-md-4 col-xs-12" ng-model="newUser.Numero"/></div>
+                                                                        <input class="form-control col-md-4 col-xs-12" ng-model="newUser.Numero"/></div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Date piece</label>
                                                                     <div class="col-md-8 col-sm-8 col-xs-8">
-                                                                        <input type="date" class="form-control col-md-4 col-xs-12" ng-model="newUser.DatePiece"/></div>
+                                                                        <input type="date" id="date" class="form-control col-md-4 col-xs-12" ng-model="newUser.DatePiece"/></div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Nom Beneficiaire</label>
@@ -206,7 +211,9 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                    <input type="button" value="submit" class="btn btn-primary"/>
+                                    </div>
                                 </div>
                             </div>
                         </h:form>

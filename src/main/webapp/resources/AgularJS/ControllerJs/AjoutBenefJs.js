@@ -1,10 +1,10 @@
 var myApp = angular.module("myApp", []);
 
 myApp.controller("myController", function ($scope) {
-
-    console.log("in controller...");
     $scope.newUser = {};
     $scope.users = [];
+        console.log($scope.users);
+    
     $scope.save = function () {
         $scope.users.push($scope.newUser);
         $scope.newUser = {};

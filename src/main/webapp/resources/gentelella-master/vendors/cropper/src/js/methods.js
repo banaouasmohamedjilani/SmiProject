@@ -16,7 +16,7 @@
       }
 
       this.setCropBoxData(this.initialCropBox);
-    },
+    };
 
     // Reset the image and crop box to their initial states
     reset: function () {
