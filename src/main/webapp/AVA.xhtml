@@ -125,6 +125,8 @@
                                         <div class="x_content">
                                             <br />
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="overflow-x:scroll;" ng-controller="myController" >
+                                                <div> <label>Search <input ng-model="search"/></label> 
+                                                </div>
                                                 <table id="" class="table table-bordered table-striped table-hover " cellspacing="0" >
                                                     <thead>
                                                         <tr>
@@ -139,7 +141,7 @@
                                                             <th>Delete</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody ng-repeat="u in users">
+                                                    <tbody ng-repeat="u in users | filter:search">
                                                         <tr >
                                                             <td>{{u.Typepiece}}</td>
                                                             <td>{{u.Numero}}</td>
@@ -148,8 +150,8 @@
                                                             <td>{{u.Adresse}}</td>
                                                             <td>{{u.Qualite}}</td>
                                                             <td>{{u.Etat}}</td>
-                                                            <td><input type="button" class="btn btn-danger fa fa-angle-down"/></td>
-                                                            <td><input type="button" class="btn btn-danger fa fa-angle-down"/></td>
+                                                            <td><button type="button" class="btn btn-default" aria-label="justify"><span  class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
+                                                            <td><button type="button" class="btn btn-default" aria-label="justify" ng-click="delete($index)"><span  class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
                                                             
                                                         </tr>
                                                     </tbody>

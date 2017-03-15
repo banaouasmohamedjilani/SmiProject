@@ -9,13 +9,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body class="nav-md">
-       
+
         <ui:composition template="./a.xhtml">
 
             <ui:define name="content">
-                <div class="row">
+                <div class="row" ng-app="myForm" ng-controller="vform">
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-                        <form class="form-horizontal form-label-left">
+                        <form class="form-horizontal form-label-left" name="userForm" ng-submit="submitForm()" novalidate="true">
                             <div class="x_panel">
                                 <div class="x_content" >
                                     <div class="x_title">
@@ -48,7 +48,7 @@
                                                         <h:outputText value="Date dossier" class="control-label col-md-7 col-xs-12"/>
                                                     </div>
                                                 </div>
-                                                 <div class="form-group" >
+                                                <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Type dossier</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
                                                         <h:outputText value="Type dossier" class="control-label col-md-7 col-xs-12"/>
@@ -66,51 +66,51 @@
                                             <br />
                                             <div class="col-md-12 col-sm-12 col-xs-12" >
                                                 <div class="form-group col-md-4" style="float:left;">
-                                                <div class="form-group" >
-                                                    <label class="control-label col-md-4 col-sm-4 col-xs-10">C.A</label>
-                                                    <div class="col-md-8 col-sm-4 col-xs-6">
-                                                        <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-4 col-sm-4 col-xs-10">C.A</label>
+                                                        <div class="col-md-8 col-sm-4 col-xs-6">
+                                                            <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-4 col-sm-4 col-xs-10">C.A Fiscal H.T</label>
+                                                        <div class="col-md-8 col-sm-4 col-xs-6">
+                                                            <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group" >
-                                                    <label class="control-label col-md-4 col-sm-4 col-xs-10">C.A Fiscal H.T</label>
-                                                    <div class="col-md-8 col-sm-4 col-xs-6">
-                                                        <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                <div class="form-group col-md-4" style="float:left;">
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Autorise</label>
+                                                        <div class="col-md-8 col-sm-4 col-xs-6">
+                                                            <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Cumul Transfert</label>
+                                                        <div class="col-md-8 col-sm-4 col-xs-6">
+                                                            <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                                 <div class="form-group col-md-4" style="float:left;">
-                                                <div class="form-group" >
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Autorise</label>
-                                                    <div class="col-md-8 col-sm-4 col-xs-6">
-                                                        <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                <div class="form-group col-md-4" style="float:left;">
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Avance</label>
+                                                        <div class="col-md-8 col-sm-4 col-xs-6">
+                                                            <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Droit a transfert</label>
+                                                        <div class="col-md-8 col-sm-4 col-xs-6">
+                                                            <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                 <div class="form-group" >
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Cumul Transfert</label>
-                                                    <div class="col-md-8 col-sm-4 col-xs-6">
-                                                        <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
-                                                    </div>
-                                                 </div>
-                                                 </div>
-                                                 <div class="form-group col-md-4" style="float:left;">
-                                                     <div class="form-group" >
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Avance</label>
-                                                    <div class="col-md-8 col-sm-4 col-xs-6">
-                                                        <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
-                                                    </div>
-                                                </div>
-                                                 <div class="form-group" >
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Droit a transfert</label>
-                                                    <div class="col-md-8 col-sm-4 col-xs-6">
-                                                        <h:outputText value="10.000.000" class="control-label col-md-9 col-xs-12"/>
-                                                    </div>
-                                                </div>
-                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                     <div class="x_content" >
+                                    <div class="x_content" >
                                         <div class="x_title">
                                             <h2>Mouvement</h2>
                                             <div class="clearfix"></div>
@@ -121,97 +121,108 @@
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Devise</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                            <select class="select2_group form-control">
-                                                                <optgroup label="Devise">
-                                                                    <option value="AK">EUR</option>
-                                                                    <option value="HI">TND</option>
-                                                                    <option value="CA">DOLLARS</option>
-                                                                </optgroup>
-                                                            </select>
-                                                        </div>
+                                                        <select class="select2_group form-control">
+                                                            <optgroup label="Devise">
+                                                                <option value="AK">EUR</option>
+                                                                <option value="HI">TND</option>
+                                                                <option value="CA">DOLLARS</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                 <div class="form-group" >
+                                                <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Beneficiaire</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                            <select class="select2_group form-control">
-                                                                <optgroup label="Nom beneficiaire">
-                                                                    <option value="AK">aaaaaa</option>
-                                                                    <option value="HI">bbbbbb</option>
-                                                                    <option value="CA">cccccc</option>
-                                                                </optgroup>
-                                                            </select>
-                                                        </div>
+                                                        <select class="select2_group form-control">
+                                                            <optgroup label="Nom beneficiaire">
+                                                                <option value="AK">aaaaaa</option>
+                                                                <option value="HI">bbbbbb</option>
+                                                                <option value="CA">cccccc</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Mode</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                            <select class="select2_group form-control">
-                                                                <optgroup label="Mode">
-                                                                    <option value="AK">Mode1</option>
-                                                                    <option value="HI">Mode2</option>
-                                                                    <option value="CA">Mode3</option>
-                                                                </optgroup>
-                                                            </select>
-                                                        </div>
+                                                        <select class="select2_group form-control">
+                                                            <optgroup label="Mode">
+                                                                <option value="AK">Mode1</option>
+                                                                <option value="HI">Mode2</option>
+                                                                <option value="CA">Mode3</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Pays</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                            <select class="select2_group form-control">
-                                                                <optgroup label="Pays">
-                                                                    <option value="AK">Pays1</option>
-                                                                    <option value="HI">Pays2</option>
-                                                                    <option value="CA">Pays3</option>
-                                                                </optgroup>
-                                                            </select>
-                                                        </div>
+                                                        <select class="select2_group form-control">
+                                                            <optgroup label="Pays">
+                                                                <option value="AK">Pays1</option>
+                                                                <option value="HI">Pays2</option>
+                                                                <option value="CA">Pays3</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Agence reception argent</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                            <select class="select2_group form-control">
-                                                                <optgroup label="Agence">
-                                                                    <option value="AK">Agence1</option>
-                                                                    <option value="HI">Agence2</option>
-                                                                    <option value="CA">Agence3</option>
-                                                                </optgroup>
-                                                            </select>
+                                                        <select class="select2_group form-control">
+                                                            <optgroup label="Agence">
+                                                                <option value="AK">Agence1</option>
+                                                                <option value="HI">Agence2</option>
+                                                                <option value="CA">Agence3</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <style>
+input.ng-invalid {
+    background-color: pink;
+}
+input.ng-valid {
+    background-color: lightgreen;
+}
+</style>
+                                                <div class="form-group col-md-12" >
+                                                    <div class="form-group col-md-4" style="float:left;margin-right: 0;" ng-class="{ 'has-error' : userForm.Mnt.$invalid &amp;&amp; !userForm.Mnt.$pristine }">
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Montant</label>
+                                                        <div class="col-md-8 col-sm-4 col-xs-6" ng-controller="fessCntrl">
+                                                            <input type="text" class="form-control col-md-7 col-xs-12" name="Mnt"  ng-model="user.Mnt" format="number"  required="true"/>
+                                                            <p ng-show="userForm.Mnt.$invalid &amp;&amp; !userForm.Mnt.$pristine" class="help-block">Your name is required.</p>
                                                         </div>
-                                                </div>
-                                                <div class="form-group col-md-12" ng-app="myForm" ng-controller="vform">
-                                                    <div class="form-group col-md-4" style="float:left;margin-right: 0;" >
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Montant</label>
-                                                    <div class="col-md-8 col-sm-4 col-xs-6">
-                                                        <input type="text" value="10.000.000" class="form-control col-md-7 col-xs-12"/>
-                                                    
+                                                    </div>
+                                                    <div class="form-group col-md-4"  style="float:left;"  ng-class="{ 'has-error' : userForm.startDate.$invalid &amp;&amp; !userForm.startDate.$pristine }">
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Date depart</label>
+                                                        <div class="col-md-9 col-sm-4 col-xs-6">
+                                                            <input ng-model="startDate" id="startDate" ng-change="checkErr(startDate, endDate)" type="Date" class="form-control col-md-7 col-xs-12" name="startDate" required="true"/>
+                                                            <p ng-show="userForm.startDate.$invalid &amp;&amp; !userForm.startDate.$pristine" class="help-block">Date required</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-4" style="float:left"  ng-class="{ 'has-error' : userForm.endDate.$invalid &amp;&amp; !userForm.startDate.$pristine }">
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Date retour</label>
+                                                        <div class="col-md-9 col-sm-4 col-xs-6">
+                                                            <input ng-model="endDate" id="endDate" ng-change="checkErr(startDate, endDate)" type="date" class="form-control col-md-7 col-xs-12" name="endDate" required="true"/>
+                                                            <p ng-show="userForm.endDate.$invalid &amp;&amp; !userForm.endDate.$pristine" class="help-block">Date is required.</p>
+                                                        </div>
+
                                                     </div>
                                                 </div>
-                                                    <div class="form-group col-md-4"  style="float:left;">
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Date depart</label>
-                                                    <div class="col-md-9 col-sm-4 col-xs-6">
-                                                        <input ng-model="startDate" id="startDate" ng-change="checkErr(startDate,endDate)" type="Date" class="form-control col-md-7 col-xs-12"/>
-                                                    </div>
-                                                </div>
-                                                    <div class="form-group col-md-4" style="float:left">
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Date retour</label>
-                                                    <div class="col-md-9 col-sm-4 col-xs-6">
-                                                        <input ng-model="endDate" id="endDate" ng-change="checkErr(startDate,endDate)" type="date" class="form-control col-md-7 col-xs-12"/>
-                                                    </div>
-                                                   
-                                                </div>
-                                                     <span>{{errMessage}}</span>
-                                            </div>
+
+                                                <span>{{errMessage}}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" value="submit" class="btn btn-primary"/>
+                                        <button type="submit" class="btn btn-primary" ng-disabled="!(userForm.$valid &amp;&amp; !userForm.$pristine &amp;&amp; checkErr(startDate, endDate))">submit</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-</div>
                     </div>
+                </div>
             </ui:define>
         </ui:composition>
     </body>

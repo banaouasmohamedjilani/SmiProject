@@ -6,9 +6,15 @@ myApp.controller("myController", function ($scope) {
         console.log($scope.users);
     
     $scope.save = function () {
+        if ($scope.newUser.Typepiece != null)
         $scope.users.push($scope.newUser);
         $scope.newUser = {};
         console.log($scope.users);
+    };
+    
+     $scope.delete = function (index) {
+         console.log(index);
+        $scope.users.splice(index, 1);
     };
 });
     
