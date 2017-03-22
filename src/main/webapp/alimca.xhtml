@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>Retrocession Annulation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body class="nav-md">
+
+        <ui:composition template="./a.xhtml">
+            <ui:define name="content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                        <form class="form-horizontal form-label-left">
+                            <div class="x_panel">
+                                <div class="x_content" >
+                                    <div class="x_title">
+                                        <h3>ALIMENTATION CHIFFRE D'AFFAIRES</h3>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content" >
+                                        <div class="x_title">
+                                            <h2>Periode</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <br />
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="form-group col-md-6 pull-left" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Annes Fiscale</label>
+                                                        <div class="col-md-6 col-sm-4 col-xs-6" >
+                                                            <h:outputText value="" class=" form form-control col-md-7 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6 pull-left" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Date MAJ</label>
+                                                        <div class="col-md-6 col-sm-4 col-xs-6">
+                                                            <h:outputText value="" class=" form form-control col-md-7 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="x_content" >
+                                        <div class="x_title">
+                                            <h2>Dossier</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <br />
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group" >
+                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Agence</label>
+                                                    <div class="col-md-6 col-sm-4 col-xs-6" >
+                                                        <h:outputText value="" class=" form form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Numero</label>
+                                                    <div class="col-md-6 col-sm-4 col-xs-6">
+                                                        <h:outputText value="" class=" form form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Type dossier</label>
+                                                    <div class="col-md-6 col-sm-4 col-xs-6" >
+                                                        <h:outputText value="" class=" form form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Code client</label>
+                                                    <div class="col-md-6 col-sm-4 col-xs-6" >
+                                                        <h:outputText value="" class=" form form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Nom/Raison sociale</label>
+                                                    <div class="col-md-6 col-sm-4 col-xs-6">
+                                                        <h:outputText value="" class=" form form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Adresse</label>
+                                                    <div class="col-md-6 col-sm-4 col-xs-6">
+                                                        <h:outputText value="" class=" form form-control col-md-7 col-xs-12"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10 pull-left">Document remis</label>
+                                                    <div class="form-group pull-left col-md-3">
+                                                        <label class="control-label col-md-12 col-sm-12 col-xs-10 pull-left">Declaration fiscale</label>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                    <div class="radio pull-left col-md-4">
+                                                        <label><input type="radio" name="optradio"/>Oui</label>
+                                                    </div>
+                                                    <div class="radio pull-left col-md-4">
+                                                        <label><input type="radio" name="optradio"/>Non</label>
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group pull-left col-md-3">
+                                                        <input type="text" class=" form form-control col-md-12 col-xs-12"/>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="x_content" >
+                                        <div class="x_title">
+                                            <h2>Montant</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content" ng-repeat="a in Obbj">
+                                            <br />
+                                            <div class="col-md-12 col-sm-12 col-xs-12" >
+                                                <div class="form-group col-md-4" style="float:left;">
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-4 col-sm-4 col-xs-10">C.A</label>
+                                                        <div class="col-md-8 col-sm-7 col-xs-6">
+                                                            <h:outputText value="" class="form form-control col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-4 col-sm-4 col-xs-10">C.A Fiscal H.T</label>
+                                                        <div class="col-md-8 col-sm-7 col-xs-6">
+                                                            <h:outputText value="" class="form form-control col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-4" style="float:left;">
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Autorise</label>
+                                                        <div class="col-md-8 col-sm-7 col-xs-6">
+                                                            <h:outputText value="" class="form form-control col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Cumul Transfert</label>
+                                                        <div class="col-md-8 col-sm-7 col-xs-6">
+                                                            <h:outputText value="" class="form form-control col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-4" style="float:left;">
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Avance</label>
+                                                        <div class="col-md-8 col-sm-7 col-xs-6">
+                                                            <h:outputText value="" class="form form-control col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label class="control-label col-md-3 col-sm-4 col-xs-10">Solde</label>
+                                                        <div class="col-md-8 col-sm-7 col-xs-6">
+                                                            <h:outputText value="" class="form form-control col-md-9 col-xs-12"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+
