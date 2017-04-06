@@ -5,12 +5,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <head>
-        <title>TODO supply a title</title>
+        <title>Frais de voyages</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body class="nav-md">
 
-        <ui:composition template="./a.xhtml">
+        <ui:composition template="./templateG.xhtml">
 
             <ui:define name="content">
                 <div class="row" ng-app="myForm" ng-controller="vform">
@@ -19,7 +19,7 @@
                             <div class="x_panel">
                                 <div class="x_content" >
                                     <div class="x_title">
-                                        <h1>FRAIS DE VOYAGE</h1>
+                                        <h3>FRAIS DE VOYAGE</h3>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content" >
@@ -185,7 +185,6 @@
                                                             <input ng-model="endDate" id="endDate" ng-change="checkErr(startDate, endDate)" type="date" class="form-control col-md-7 col-xs-12" name="endDate" required="true"/>
                                                             <p ng-show="userForm.endDate.$invalid &amp;&amp; !userForm.endDate.$pristine" class="help-block">Date is required.</p>
                                                         </div>
-
                                                     </div>
                                                 </div>
 

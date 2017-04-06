@@ -24,7 +24,7 @@
 		<slf4j.version>1.7.7</slf4j.version>
 		<quartz.version>2.2.1</quartz.version>
 		<sourceEncoding>UTF-8</sourceEncoding>
-                <spring.security.version>4.2.1</spring.security.version>
+                <spring.security.version>3.2.5.RELEASE</spring.security.version>
 	</properties>
 
 	<dependencies>
@@ -71,7 +71,7 @@
 	  <type>jar</type>
 	 </dependency>
  <dependency> 
-  <groupId>org.apache.commons</groupId>
+  <groupId>commons-io</groupId>
   <artifactId>commons-io</artifactId> 
   <version>1.3.2</version> 
 </dependency> 
@@ -103,9 +103,9 @@
 	  <scope>provided</scope>
 	 </dependency>
 	    <dependency>
-	        <groupId>unknown.binary</groupId>
-	        <artifactId>hibernate-jpamodelgen-4.3.1.Final</artifactId>
-	        <version>SNAPSHOT</version>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-jpamodelgen</artifactId>
+	        <version>4.3.1.Final</version>
 	        <scope>provided</scope>
 	    </dependency>
 	 <dependency>
@@ -120,6 +120,39 @@
 	  <version>4.0.0</version>
 	  <type>jar</type>
 	 </dependency>
+         <!-- org.springframework.security -->
+		<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-core</artifactId>
+		<version>${spring.security.version}</version>
+          <type>jar</type>
+       </dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+	
+         <!-- org.springframework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<!-- org.springframework.security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
 	 <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -158,13 +191,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-
-		<!-- org.springframework -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
-
 		<!-- org.primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>

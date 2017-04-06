@@ -16,14 +16,13 @@
 //{ 
 //    try{
 //        ResteasyClient clients = new ResteasyClientBuilder().build();
-//        ResteasyWebTarget target = clients.target("http://169.254.223.24:7258/STB_Serveur/sec/getclientlogin")
+//        ResteasyWebTarget target = clients.target("http://localhost:7258/STB_Serveur/sec/getclientlogin")
 //                .queryParam("login",login);
 //       Client c  = target.request(MediaType.APPLICATION_JSON).get(Client.class);
-//       System.out.print(c.getClientPK().getTypePiecePersonne()+"  " +c.getPassword());
 //    if ((c != null )&&(c.getPassword().equals(pwd)))
 //    {  System.out.println("Login success "+c.toString());
 //    HttpSession session = SessionUtils.getSession();
-//			session.setAttribute("user",c);
+//			session.setAttribute("user",c.getNom());
 //        return true;
 //   
 //    

@@ -1,25 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <head>>
-       
+
     </head>
 
     <body class="nav-md" >
 
-        <ui:composition template="./a.xhtml">
+        <ui:composition template="./templateG.xhtml">
 
             <ui:define name="content">
                 <div class="row" ng-app="myApp" ng-controller="myController">
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-                        <form  class="form-horizontal form-label-left" name="user" novalidate="true" ng-submit="save()">
+                        <form  class="form-horizontal form-label-left" name="user" novalidate="true" ng-submit="submit()" action="informations.xhtml" method="POST">
                             <div class="x_panel">
                                 <div class="x_content" >
                                     <div class="x_title">
-                                        <h1>Allocation Voyage D'affaire</h1>
+                                        <h3>Allocation Voyage D'affaire</h3>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content" >
@@ -32,10 +30,10 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-2 col-sm-4 col-xs-10">Agence</label>
-                                                    <div class="col-md-6 col-sm-4 col-xs-6" ng-class="{ 'has-error' : user.agence.$invalid &amp;&amp; !user.agence.$pristine }">
-                                                        <select class="select2_group form-control" name="agence" ng-model="user.ag" required="true">
+                                                    <div class="col-md-6 col-sm-6 col-xs-10" ng-class="{ 'has-error' : user.agence.$invalid &amp;&amp; !user.agence.$pristine }">
+                                                        <select class="select2_group form-control" name="agence" ng-model="ava.codeAgenceAva" required="true">
                                                             <option></option>
-                                                            <option ng-repeat ="x in objects.data"  >{{x.name}}</option>
+                                                            <option ng-repeat ="x in agences.data track by $index" value="{{x.agencePK.codeAgenceBct}}">{{x.libAgence}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -52,16 +50,17 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-2 col-sm-4 col-xs-10">Code</label>
-                                                    <div class="col-md-6 col-sm-4 col-xs-6" ng-class="{ 'has-error' : user.code.$invalid &amp;&amp; !user.code.$pristine }">
-                                                        <select class="select2_group form-control" name="code" ng-model="user.ce" required="true">
+                                                    <div class="col-md-6 col-sm-6 col-xs-10" ng-class="{ 'has-error' : user.code.$invalid &amp;&amp; !user.code.$pristine }">
+                                                        <select class="select2_group form-control" name="code" ng-model="ava.codeTypeDosAva" required="true">
                                                             <option></option>   
-                                                            <option ng-repeat ="x in objects.data">{{x.username}}</option>
+                                                            <option ng-repeat ="x in tdossier.data track by $index" value="{{x.codeTypeDosAva}}">{{x.libTypeDosAva}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <input value="#{menubarManagedBean.cl.clientPK.noPiecePersonne.toString()}" id="aze" hidden="true"/>
                                     <div class="x_content">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <div class="x_title">
@@ -73,13 +72,12 @@
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label class="control-label col-md-2 col-sm-4 col-xs-10">Compte</label>
-                                                        <div class="col-md-6 col-sm-4 col-xs-6" ng-class="{ 'has-error' : user.cmp.$invalid &amp;&amp; !user.cmp.$pristine }">
-                                                            <select class="select2_group form-control" name="cmp" ng-model="user.cmpt" required="true" >
+                                                        <div  class="col-md-6 col-sm-6 col-xs-10" ng-class="{ 'has-error' : user.cmp.$invalid &amp;&amp; !user.cmp.$pristine }" >
+                                                            <select class="select2_group form-control" name="cmp" ng-model="compte" required="true"  ng-change="filter()">{
                                                                 <optiongroup value="Selectionner votre compte">
-                                                                    <option></option>
-                                                                <option ng-repeat ="x in objects.data">{{x.email}}</option>
+                                                                    <option ng-repeat ="x in CompteC.data track by $index" >{{x.comptePK.cleRib}}{{x.comptePK.codeAgenceBct}}{{x.comptePK.racineCompte}}</option>
                                                                 </optiongroup>
-                                                        </select>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -97,11 +95,11 @@
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label class="control-label col-md-2 col-sm-4 col-xs-10">Activite</label>
-                                                        <div class="col-md-6 col-sm-4 col-xs-6"  ng-class="{ 'has-error' : user.ac.$invalid &amp;&amp; !user.ac.$pristine }">
-                                                           <select class="select2_group form-control" name="ac" ng-model="user.act" required="true">
-                                                               <option></option>
-                                                               <option ng-repeat ="x in objects.data">{{x.website}}</option>
-                                                        </select>
+                                                        <div class="col-md-6 col-sm-6 col-xs-10"  ng-class="{ 'has-error' : user.ac.$invalid &amp;&amp; !user.ac.$pristine }">
+                                                            <select class="select2_group form-control" name="ac" ng-model="ava.codeActivite" required="true">
+                                                                <option></option>
+                                                                <option ng-repeat ="x in activite.data track by $index" value="{{x.codeActivite}}" >{{x.libActivite}}</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -132,10 +130,10 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr ng-repeat="u in users track by $index">
-                                                            
+
                                                             <td>{{u.Typepiece}}</td>
                                                             <td >{{u.Numero}}</td>
-                                                            <td>{{u.DatePiece | date:'dd-MM-yyyy'}}</td>
+                                                            <td>{{u.DatePiece| date:'dd-MM-yyyy'}}</td>
                                                             <td>{{u.Nom}}</td>
                                                             <td>{{u.Adresse}}</td>
                                                             <td>{{u.Qualite}}</td>
@@ -167,9 +165,9 @@
                                                                     <div class="col-md-8 col-sm-8 col-xs-8">
                                                                         <select class="select2_group form-control" ng-model="newUser.Typepiece" name="type" required="true">
                                                                             <option></option>
-                                                                <option ng-repeat ="x in objects.data ">{{x.id }}</option>
-                                                                         </select>
-                                                                </div>
+                                                                            <option ng-repeat ="x in tpiece.data">{{x.libelleTypePiece}}</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="form-group" ng-class="{ 'has-error' : user.Numero.$invalid &amp;&amp; !user.Numero.$pristine }" >
                                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Numero</label>
@@ -204,36 +202,41 @@
                                                                 <div class="form-group" ng-class="{ 'has-error' : user.etat.$invalid &amp;&amp; !user.etat.$pristine }">
                                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Etat</label>
                                                                     <div class="col-md-8 col-sm-8 col-xs-8">
-                                                                        <input id="val7" class="form-control col-md-4 col-xs-12 required" ng-model="newUser.Etat" name="etat" required="true" />
+                                                                        <select class="select2_group form-control" ng-model="newUser.Etat" name="etat" required="true">
+                                                                            <option value="A">Actif</option>
+                                                                            <option value="AA">A acitver</option>
+                                                                            <option value="NA">Non actif</option>
+                                                                            <option value="AD">A desactiver</option>
+                                                                        </select>
+                                                                        <!--<input id="val7" class="form-control col-md-4 col-xs-12 required" ng-model="newUser.Etat" name="etat" required="true" />-->
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="submit" class="btn btn-primary" aria-hidden="true"  ng-click="save()" ng-disabled="
-                                                                                        !(user.type.$valid &amp;&amp; !user.type.$pristine) 
-                                                                                    || !(user.Numero.$valid &amp;&amp; !user.Numero.$pristine)
+                                                                    !(user.type.$valid &amp;&amp; !user.type.$pristine)
+                                                                            || !(user.Numero.$valid &amp;&amp; !user.Numero.$pristine)
                                                                             || !(user.date.$valid &amp;&amp; !user.date.$pristine)
-                                                                    || !(user.nom.$valid &amp;&amp; !user.nom.$pristine)
-                                                            || !(user.adresse.$valid &amp;&amp; !user.adresse.$pristine)
-                                                    || !(user.qualite.$valid &amp;&amp; !user.qualite.$pristine)
-                                            || !(user.etat.$valid &amp;&amp; !user.etat.$pristine)
-                                                                            " data-dismiss="modal">submit</button>
+                                                                            || !(user.nom.$valid &amp;&amp; !user.nom.$pristine)
+                                                                            || !(user.adresse.$valid &amp;&amp; !user.adresse.$pristine)
+                                                                            || !(user.qualite.$valid &amp;&amp; !user.qualite.$pristine)
+                                                                            || !(user.etat.$valid &amp;&amp; !user.etat.$pristine)
+                                                                        " data-dismiss="modal">submit</button>
                                                                 <button type="button" class="btn btn-primary" aria-hidden="true" ng-click="reset()" >reset</button>
                                                                 <button class="btn btn-primary "  data-dismiss="modal" ng-click="reset()">Close</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                            </div>
+                                            </div> 
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-primary" ng-disabled="
-                                            ((!(user.agence.$valid &amp;&amp; !user.agence.$pristine ))
-                                                || (!(user.code.$valid &amp;&amp; !user.code.$pristine ))
-                                        || (!(user.cmp.$valid &amp;&amp; !user.cmp.$pristine ))
-                                || (!(user.ac.$valid &amp;&amp; !user.ac.$pristine ))) || checkVide()
+                                        <button type="submit" id="submit" class="btn btn-primary" ng-disabled="
+                                            ((!(user.agence.$valid &amp;&amp; !user.agence.$pristine))
+                                                    || (!(user.code.$valid &amp;&amp; !user.code.$pristine))
+                                                    || (!(user.cmp.$valid &amp;&amp; !user.cmp.$pristine))
+                                                    || (!(user.ac.$valid &amp;&amp; !user.ac.$pristine))) &amp;&amp; checkVide()
                                                 ">submit</button>
                                     </div>
                                 </div>
@@ -242,9 +245,9 @@
                     </div>
                 </div>
                 <div>
-    
-</div>
-              
+
+                </div>
+
             </ui:define>
 
         </ui:composition>
