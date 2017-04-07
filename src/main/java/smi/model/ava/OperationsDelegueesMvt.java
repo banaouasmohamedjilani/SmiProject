@@ -12,6 +12,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -35,6 +37,7 @@ public class OperationsDelegueesMvt implements Serializable {
     @Column(name = "CODE_TYPE_DOS_AVA")
     private Short codeTypeDosAva;
     @Column(name = "NUM_DOSSIER")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long numDossier;
     @Column(name = "DATE_DOSSIER")
     @Temporal(TemporalType.TIMESTAMP)

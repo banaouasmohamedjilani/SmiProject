@@ -1,10 +1,10 @@
-/* global aze */
 
-var myApp = angular.module("myApp", ['datatables', 'ngCookies']);
-
+/*
+ * Controlleur ouverture dossier
+*/
 myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver, $q, $http, $cookieStore) {
     $scope.newUser = {};
-    $scope.users = [];
+    $scope.users = [];//bénéficiaires
     $scope.isdisabled = true;
     $scope.index = null;
     $scope.cookie = $cookieStore.get('refOperation');
@@ -51,16 +51,27 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
             return false;
         }
         return true;
-
     };
+
     $scope.edit = function (index) {
         $scope.newUser = $scope.users[index];
         $scope.index = index;
         $scope.users[index];
     };
+    
+    $scope.reset = function () {
+        $scope.newUser = {};
+        $scope.index = null;
+    };
+
+    $scope.delete = function (index) {
+        $scope.users.splice(index, 1);
+        $scope.reset();
+        $scope.index = null;
+    };
 
     $scope.save = function () {
-        if (($scope.newUser.Typepiece !== null) && ($scope.newUser.Numero !== null) && ($scope.newUser.DatePiece !== null) && ($scope.newUser.Nom !== null) && ($scope.newUser.Adresse !== null) && ($scope.newUser.Qualite !== null) && ($scope.newUser.Etat !== null)) {
+        if (($scope.newUser.typePieceBenef !== null) && ($scope.newUser.noPieceBenef !== null) && ($scope.newUser.datePiece !== null) && ($scope.newUser.nomBenef !== null) && ($scope.newUser.adresseBenef !== null) && ($scope.newUser.qualite !== null) && ($scope.newUser.etat !== null)) {
             if ($scope.index === null) {
                 var user = {
                     "beneficiairesMvtPK": {
@@ -70,8 +81,14 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                         "dateOperation": Date.now(),
                         "noPieceBenef": $scope.newUser.noPieceBenef
                     },
-                    "numDossier": 2,
-                    "uniteOperation": 4
+                    "uniteOperation": 910,
+                    "typePieceBenef": $scope.newUser.typePieceBenef,
+                    "datePiece":$scope.newUser.datePiece,
+                    "nomBenef":$scope.newUser.nomBenef,
+                    "adresseBenef": $scope.newUser.adresseBenef,
+                    "qualite":$scope.newUser.qualite,
+                    "etat":$scope.newUser.etat,
+                    "dateCreation":Date.now()
                 };
                 for (var elem in $scope.newUser) {
                     user[elem] = $scope.newUser[elem];
@@ -82,20 +99,7 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                 $scope.users[$scope.index] = $scope.newUser;
                 $scope.index = null;
             }
-        }
-        ;
-
-    };
-    $scope.reset = function () {
-        $scope.newUser = {};
-        $scope.index = null;
-    };
-
-
-    $scope.delete = function (index) {
-        $scope.users.splice(index, 1);
-        $scope.reset();
-        $scope.index = null;
+        };
     };
 
     $rootScope.ava = {};
@@ -115,17 +119,18 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                         $scope.users[i].beneficiairesMvtPK.refOperation = $rootScope.refOperation;
                         $scope.users[i].codeAgenceAva = $rootScope.ava.codeAgenceAva;
                         $scope.users[i].codeTypeDos = $rootScope.ava.codeTypeDosAva;
-                    }
-                    ;
+                    };
                     $rootScope.ava = {
                         "operationsDelegueesMvtPK": {
                             "codeProduitService": 108,
                             "codeOperation": 1,
                             "refOperation": $rootScope.refOperation,
                             "dateOperation": Date.now(),
-                            "uniteOperation": 4
+                            "uniteOperation": 910
                         },
-                        "noPieceClient": $('#aze').val(),
+                        "typePieceClient":$('#typePiecePersonne').val(),
+                        "tel": $('#telPersonne').val(),
+                        "noPieceClient": $('#noPiecePersonne').val(),
                         "codeAgenceAva": $rootScope.ava.codeAgenceAva,
                         "codeTypeDosAva": $rootScope.ava.codeTypeDosAva,
                         "codeActivite": $rootScope.ava.codeActivite,
@@ -133,7 +138,13 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                         "cleRib": $rootScope.ava.cleRib,
                         "racineCompte": $rootScope.ava.racineCompte,
                         "dateValidation": Date.now(),
-                        "status": "V"
+                        "status": "V",
+                        "codeTypeMvtAva":"DAT",
+                        "numMvtAva":1,
+                        "dateMvtAva":Date.now(),
+                        "etatCloture":"N",
+                        "typeDossier":"AVA",
+                        "etatDossier":"N"
                     };
                     var data1 = {operationsDelegueesMvt: $rootScope.ava, beneficiairesMvts: $scope.users};
 
@@ -154,76 +165,7 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
 });
 
 myApp.controller("mcrlt", function ($cookieStore, $scope) {
-
     $scope.deleteCookie = function () {
         $cookieStore.remove('refOperation');
-
     };
-});
-myApp.factory("objectsRetreiver", function ($http, $q) {
-    function getAllCompteClient() {
-        var url = "http://localhost:7258/SMI_Server/ref/allCompte?noPieceClient=" + $('#aze').val();
-        return $http
-                .get(url)
-                .then(function (response) {
-                    return response;
-                }).catch(function (e) {
-            $q.reject("sorry , we can't retrieve data:", e.status);
-        });
-
-    }
-    function getAllAgence() {
-
-        return $http
-                .get("http://localhost:7258/SMI_Server/ref/allAgence")
-                .then(function (response) {
-                    return response;
-                }).catch(function (e) {
-            $q.reject("sorry , we can't retrieve data:", e.status);
-        });
-
-    }
-    function getAllTPiece() {
-
-        return $http
-                .get("http://localhost:7258/SMI_Server/ref/allTPiece")
-                .then(function (response) {
-                    return response;
-                }).catch(function (e) {
-            $q.reject("sorry , we can't retrieve data:", e.status);
-        });
-
-    }
-    function getallActivite() {
-
-        return $http
-                .get("http://localhost:7258/SMI_Server/ref/allActivite")
-                .then(function (response) {
-                    return response;
-                }).catch(function (e) {
-            $q.reject("sorry , we can't retrieve data:", e.status);
-        });
-
-    }
-
-
-    function getAllTypesDossier() {
-
-        return $http
-                .get("http://localhost:7258/SMI_Server/ref/allTypeDossierAva")
-                .then(function (response) {
-                    return response;
-                }).catch(function (e) {
-            $q.reject("sorry , we can't retrieve data:", e.status);
-        });
-
-    }
-    return {
-        getAllCompteClient: getAllCompteClient,
-        getallActivite: getallActivite,
-        getAllTypesDossier: getAllTypesDossier,
-        getAllAgence: getAllAgence,
-        getAllTPiece: getAllTPiece
-    };
-
 });
