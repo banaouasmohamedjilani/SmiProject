@@ -17,47 +17,47 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-
 @Component
 @ManagedBean
 @RequestScoped
 @Scope("request")
 public class LoginBean {
-	Log log = LogFactory.getLog(LoginBean.class);
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
+    Log log = LogFactory.getLog(LoginBean.class);
 
-	@Setter
-	@Getter
-	private String username;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-	@Setter
-	@Getter
-	private String password;
+    @Setter
+    @Getter
+    private String username;
 
-	public LoginBean() {
-	}
+    @Setter
+    @Getter
+    private String password;
 
-	public String login() {
-		try {
-	            Authentication authentication = authenticationManager
-					.authenticate(new UsernamePasswordAuthenticationToken(
-							this.username, this.password));
-                      System.out.println("user "+this.username);
-                      System.out.println("pass "+this.password);
-                      System.out.println(authentication.getAuthorities());
-			SecurityContextHolder.getContext()
-					.setAuthentication(authentication);
+    public LoginBean() {
+    }
 
-		} catch (AuthenticationException ex) {
-                    System.out.println("user "+this.username);
-                      System.out.println("pass "+this.password);
-			log.equals(ex.getMessage());
-			Util.addMessage("Login Failed: " + ex.getMessage());
-			return "";
-		}
+    public String login() {
+        try {
+            Authentication authentication = authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(
+                            this.username, this.password));
+            System.out.println("user " + this.username);
+            System.out.println("pass " + this.password);
+            System.out.println(authentication.getAuthorities());
+            SecurityContextHolder.getContext()
+                    .setAuthentication(authentication);
 
-		return Util.getSavedUrl() + "?faces-redirect=true";
-	}
+        } catch (AuthenticationException ex) {
+            System.out.println("user " + this.username);
+            System.out.println("pass " + this.password);
+            log.equals(ex.getMessage());
+            Util.addMessage("Login Failed: " + ex.getMessage());
+            return "";
+        }
+
+        return Util.getSavedUrl() + "?faces-redirect=true";
+    }
 }

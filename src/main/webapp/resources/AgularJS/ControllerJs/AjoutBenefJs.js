@@ -68,10 +68,10 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                         "codeOperation": 1,
                         "refOperation": $rootScope.refOperation,
                         "dateOperation": Date.now(),
-                        "uniteOperation": 4,
-                        "noPieceBenef": $('#aze').val()
+                        "noPieceBenef": $scope.newUser.noPieceBenef
                     },
-                    "numDossier": 2
+                    "numDossier": 2,
+                    "uniteOperation": 4
                 };
                 for (var elem in $scope.newUser) {
                     user[elem] = $scope.newUser[elem];
@@ -106,15 +106,6 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
         $rootScope.ava.codeAgenceBct = parseInt($scope.compte.substr(2, 3));
         $rootScope.ava.racineCompte = $scope.compte.substr(5, 14);
     };
-    $rootScope.ava = {
-        "operationsDelegueesMvtPK": {
-            "codeProduitService": 0,
-            "codeOperation": 0,
-            "refOperation": 0,
-            "dateOperation": 0,
-            "uniteOperation": 0
-        }
-    };
 
     $scope.submit = function () {
         $http.get("http://localhost:7258/SMI_Server/ava/getSequence")
@@ -122,7 +113,10 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                     $rootScope.refOperation = response.data;
                     for (var i = 0; i < $scope.users.length; i++) {
                         $scope.users[i].beneficiairesMvtPK.refOperation = $rootScope.refOperation;
+                        $scope.users[i].codeAgenceAva = $rootScope.ava.codeAgenceAva;
+                        $scope.users[i].codeTypeDos = $rootScope.ava.codeTypeDosAva;
                     }
+                    ;
                     $rootScope.ava = {
                         "operationsDelegueesMvtPK": {
                             "codeProduitService": 108,
@@ -137,7 +131,9 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                         "codeActivite": $rootScope.ava.codeActivite,
                         "codeAgenceBct": $rootScope.ava.codeAgenceBct,
                         "cleRib": $rootScope.ava.cleRib,
-                        "racineCompte": $rootScope.ava.racineCompte
+                        "racineCompte": $rootScope.ava.racineCompte,
+                        "dateValidation": Date.now(),
+                        "status": "V"
                     };
                     var data1 = {operationsDelegueesMvt: $rootScope.ava, beneficiairesMvts: $scope.users};
 

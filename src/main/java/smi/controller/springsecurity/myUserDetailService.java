@@ -29,30 +29,31 @@ import javax.faces.context.FacesContext;
 
 @Service
 public class myUserDetailService implements UserDetailsService {
-String url = "http://localhost:7258/SMI_Server";
-@SuppressWarnings("deprecation")
-@Override
-public UserDetails loadUserByUsername(String username)
-throws UsernameNotFoundException, DataAccessException
-{
-System.out.println("Getting access details from User dao !!");
+
+    String url = "http://localhost:7258/SMI_Server";
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException, DataAccessException {
+        System.out.println("Getting access details from User dao !!");
 
 // Ideally it should be fetched from database and populated instance of
 // #org.springframework.security.core.userdetails.User should be returned from this method
-ResteasyClient client = new ResteasyClientBuilder().build();
+        ResteasyClient client = new ResteasyClientBuilder().build();
 
-ResteasyWebTarget targets = client.target(url+"/sec/getclientlogin").queryParam("login",username);
-Client c = targets.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(Client.class);
+        ResteasyWebTarget targets = client.target(url + "/sec/getclientlogin").queryParam("login", username);
+        Client c = targets.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(Client.class);
 //if (targets.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get().getStatus() == 200)
-Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-UserDetails user = new User(c.getClientPK().getNoPiecePersonne(),c.getPassword(), true, true, true, true, authorities); 
-System.out.println("sssssss "+user);
-FacesContext facesContext = FacesContext.getCurrentInstance();
+        UserDetails user = new User(c.getClientPK().getNoPiecePersonne(), c.getPassword(), true, true, true, true, authorities);
+        System.out.println("sssssss " + user);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map<String, Object> sessionMap = externalContext.getSessionMap();
-        sessionMap.put("user",user.getUsername());
-return user;
-}
+        sessionMap.put("user", user.getUsername());
+        return user;
+    }
 }
