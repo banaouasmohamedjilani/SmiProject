@@ -1,14 +1,22 @@
 
 /*
  * Controlleur ouverture dossier
-*/
-myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver, $q, $http, $cookieStore) {
+ */
+myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver, $q, $http, $cookieStore,$window) {
     $scope.newUser = {};
     $scope.users = [];//bénéficiaires
     $scope.isdisabled = true;
     $scope.index = null;
     $scope.cookie = $cookieStore.get('refOperation');
 
+    objectsRetreiver
+            .verifExistanceDossActif()
+            .then(function (response) {
+                $scope.vExist = response;
+        console.log($scope.vExist);
+            }).catch(function (message) {
+        console.log(message);
+    });
     objectsRetreiver
             .getAllAgence()
             .then(function (response) {
@@ -44,6 +52,17 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
             }).catch(function (message) {
         console.log(message);
     });
+    
+    $scope.verifExist = function(){
+         if($scope.vExist){
+             return true;
+         }else{
+             window.alert("Desole vous avez deja un dossier actif\n\
+ vous allez etre redirigee vers l'acceuil \n\
+ Merci");
+          window.location.pathname="/SmiProject-1/Acceuil.xhtml";
+      }
+    };
 
     $scope.checkVide = function () {
         if ($scope.users.length > 0) {
@@ -58,7 +77,7 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
         $scope.index = index;
         $scope.users[index];
     };
-    
+
     $scope.reset = function () {
         $scope.newUser = {};
         $scope.index = null;
@@ -83,12 +102,12 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                     },
                     "uniteOperation": 910,
                     "typePieceBenef": $scope.newUser.typePieceBenef,
-                    "datePiece":$scope.newUser.datePiece,
-                    "nomBenef":$scope.newUser.nomBenef,
+                    "datePiece": $scope.newUser.datePiece,
+                    "nomBenef": $scope.newUser.nomBenef,
                     "adresseBenef": $scope.newUser.adresseBenef,
-                    "qualite":$scope.newUser.qualite,
-                    "etat":$scope.newUser.etat,
-                    "dateCreation":Date.now()
+                    "qualite": $scope.newUser.qualite,
+                    "etat": $scope.newUser.etat,
+                    "dateCreation": Date.now()
                 };
                 for (var elem in $scope.newUser) {
                     user[elem] = $scope.newUser[elem];
@@ -99,7 +118,8 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                 $scope.users[$scope.index] = $scope.newUser;
                 $scope.index = null;
             }
-        };
+        }
+        ;
     };
 
     $rootScope.ava = {};
@@ -119,7 +139,8 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                         $scope.users[i].beneficiairesMvtPK.refOperation = $rootScope.refOperation;
                         $scope.users[i].codeAgenceAva = $rootScope.ava.codeAgenceAva;
                         $scope.users[i].codeTypeDos = $rootScope.ava.codeTypeDosAva;
-                    };
+                    }
+                    ;
                     $rootScope.ava = {
                         "operationsDelegueesMvtPK": {
                             "codeProduitService": 108,
@@ -128,7 +149,7 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                             "dateOperation": Date.now(),
                             "uniteOperation": 910
                         },
-                        "typePieceClient":$('#typePiecePersonne').val(),
+                        "typePieceClient": $('#typePiecePersonne').val(),
                         "tel": $('#telPersonne').val(),
                         "noPieceClient": $('#noPiecePersonne').val(),
                         "codeAgenceAva": $rootScope.ava.codeAgenceAva,
@@ -139,12 +160,12 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
                         "racineCompte": $rootScope.ava.racineCompte,
                         "dateValidation": Date.now(),
                         "status": "V",
-                        "codeTypeMvtAva":"DAT",
-                        "numMvtAva":1,
-                        "dateMvtAva":Date.now(),
-                        "etatCloture":"N",
-                        "typeDossier":"AVA",
-                        "etatDossier":"N"
+                        "codeTypeMvtAva": "DAT",
+                        "numMvtAva": 1,
+                        "dateMvtAva": Date.now(),
+                        "etatCloture": "N",
+                        "typeDossier": "AVA",
+                        "etatDossier": "N"
                     };
                     var data1 = {operationsDelegueesMvt: $rootScope.ava, beneficiairesMvts: $scope.users};
 

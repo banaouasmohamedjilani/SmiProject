@@ -51,8 +51,21 @@ myApp.factory("objectsRetreiver", function ($http, $q) {
             $q.reject("sorry , we can't retrieve data:", e.status);
         });
     }
+    
+     function verifExistanceDossActif() {
+        return $http
+                .get("http://localhost:7258/SMI_Server/ava/verifExistanceDosActif?typePieceClient="
+                + $('#typePiecePersonne').val()
+                +"&noPieceClient="+ $('#noPiecePersonne').val())
+                .then(function (response) {
+                    return response;
+                }).catch(function (e) {
+            $q.reject("sorry , we can't retrieve data:", e.status);
+        });
+    }
 
     return {
+        verifExistanceDossActif:verifExistanceDossActif,
         getAllCompteClient: getAllCompteClient,
         getallActivite: getallActivite,
         getAllTypesDossier: getAllTypesDossier,

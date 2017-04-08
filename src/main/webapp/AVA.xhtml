@@ -11,7 +11,7 @@
         <ui:composition template="./templateG.xhtml">
 
             <ui:define name="content">
-                <div class="row" ng-app="myApp" ng-controller="myController">
+                <div class="row" ng-controller="myController"  ng-init="verifExist()">
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
                         <form  class="form-horizontal form-label-left" name="user" novalidate="true" ng-submit="submit()" action="informations.xhtml" method="POST" >
                             <div class="x_panel">
