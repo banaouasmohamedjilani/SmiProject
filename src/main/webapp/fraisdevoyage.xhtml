@@ -12,7 +12,7 @@
         <ui:composition template="./templateG.xhtml">
 
             <ui:define name="content">
-                <div class="row"  ng-controller="myCntrl">
+                <div class="row"  ng-controller="fraisVoyage">
                     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
                         <form class="form-horizontal form-label-left" name="userForm" ng-submit="submitForm()" novalidate="true">
                             <div class="x_panel">
@@ -20,37 +20,42 @@
                                     <div class="x_title">
                                         <h3>FRAIS DE VOYAGE</h3>
                                         <div class="clearfix"></div>
+                                        
                                     </div>
+                                    <input value="#{menubarManagedBean.cl.clientPK.typePiecePersonne.toString()}" id="typePiecePersonne" hidden="true"/>
+                                    <input value="#{menubarManagedBean.cl.telephone.toString()}" id="telPersonne" hidden="true"/>
+                                    <input value="#{menubarManagedBean.cl.clientPK.noPiecePersonne.toString()}" id="noPiecePersonne" hidden="true"/>
+                                   
                                     <div class="x_content" >
                                         <div class="x_title">
                                             <h2>Dossier</h2>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div class="x_content" ng-repeat="x in Obbj">
+                                        <div class="x_content" ng-repeat="x in InfoDos.data track by $index">
                                             <br />
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="col-md-12 col-sm-12 col-xs-12" >
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Agence</label>
-                                                    <div class="col-md-6 col-sm-4 col-xs-6" >
-                                                        <h:outputText value="{{x.name}}" class=" form form-control col-md-7 col-xs-12"/>
+                                                    <div class="col-md-6 col-sm-4 col-xs-6"  >
+                                                            <h:outputText  class=" form form-control col-md-7 col-xs-12" value="{{LibAgence}}"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Numero dossier</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                        <h:outputText value="{{x.username}}" class=" form form-control col-md-7 col-xs-12"/>
+                                                        <h:outputText value="{{x.operationsDelegueesPK.numDossier}}" class=" form form-control col-md-7 col-xs-12"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Date dossier</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                        <h:outputText value="{{x.address.street}}" class=" form form-control col-md-7 col-xs-12"/>
+                                                        <h:outputText value="{{x.operationsDelegueesPK.dateDossier | date:'dd/MM/yyyy'}}" class=" form form-control col-md-7 col-xs-12"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group" >
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Type dossier</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                        <h:outputText value="{{x.address.city}}" class=" form form-control col-md-7 col-xs-12"/>
+                                                        <h:outputText value="{{LibTypeDossAva}}" class=" form form-control col-md-7 col-xs-12"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -60,21 +65,22 @@
                                         <div class="x_title">
                                             <h2>Montant</h2>
                                             <div class="clearfix"></div>
+                                            <input value="#{menubarManagedBean.codeBanque}" type="hidden" id="codeBanque"/>
                                         </div>
-                                        <div class="x_content" ng-repeat="a in Obbj">
+                                        <div class="x_content" ng-repeat="a in InfoDos.data">
                                             <br />
                                             <div class="col-md-12 col-sm-12 col-xs-12" >
                                                 <div class="form-group col-md-4" style="float:left;">
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4 col-sm-4 col-xs-10">C.A</label>
                                                         <div class="col-md-8 col-sm-7 col-xs-6">
-                                                            <h:outputText value="{{a.address.geo.lng}}" class="form form-control col-md-9 col-xs-12"/>
+                                                            <h:outputText value="{{a.mntCa}}" class="form form-control col-md-9 col-xs-12"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-4 col-sm-4 col-xs-10">C.A Fiscal H.T</label>
                                                         <div class="col-md-8 col-sm-7 col-xs-6">
-                                                            <h:outputText value="{{a.address.geo.lng}}" class="form form-control col-md-9 col-xs-12"/>
+                                                            <h:outputText value="{{a.mntCaFiscal}}" class="form form-control col-md-9 col-xs-12"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -82,19 +88,19 @@
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-3 col-sm-4 col-xs-10">Autorise</label>
                                                         <div class="col-md-8 col-sm-7 col-xs-6">
-                                                            <h:outputText value="{{a.address.geo.lng}}" class="form form-control col-md-9 col-xs-12"/>
+                                                            <h:outputText value="{{a.mntAvance}}" class="form form-control col-md-9 col-xs-12"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-3 col-sm-4 col-xs-10">Cumul Transfert</label>
                                                         <div class="col-md-8 col-sm-7 col-xs-6">
-                                                            <h:outputText value="{{a.address.geo.lng}}" class="form form-control col-md-9 col-xs-12"/>
+                                                            <h:outputText value="{{a.mntUtilise}}" class="form form-control col-md-9 col-xs-12"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-3 col-sm-4 col-xs-10">Droit a transfert provisoire</label>
                                                         <div class="col-md-8 col-sm-7 col-xs-6">
-                                                            <h:outputText value="{{a.address.geo.lng}}" class="form form-control col-md-9 col-xs-12"/>
+                                                            <h:outputText value="{{a.solde}}" class="form form-control col-md-9 col-xs-12"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -102,13 +108,13 @@
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-3 col-sm-4 col-xs-10">Avance</label>
                                                         <div class="col-md-8 col-sm-7 col-xs-6">
-                                                            <h:outputText value="{{a.address.geo.lng}}" class="form form-control col-md-9 col-xs-12"/>
+                                                            <h:outputText value="{{a.mntAvance}}" class="form form-control col-md-9 col-xs-12"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group" >
                                                         <label class="control-label col-md-3 col-sm-4 col-xs-10">Droit a transfert net</label>
                                                         <div class="col-md-8 col-sm-7 col-xs-6">
-                                                            <h:outputText value="{{a.address.geo.lng}}" class="form form-control col-md-9 col-xs-12"/>
+                                                            <h:outputText value="" class="form form-control col-md-9 col-xs-12"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,51 +129,66 @@
                                         <div class="x_content">
                                             <br />
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group" ng-class="{ 'has-error' : userForm.id.$invalid &amp;&amp; !userForm.id.$pristine }" >
+                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.Devise.$invalid &amp;&amp; !userForm.Devise.$pristine }">
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Devise</label>
-                                                    <div class="col-md-6 col-sm-4 col-xs-6">
-                                                        <select class="select2_group form-control" name="id" ng-model="user.id" required="true">
-                                                            <option ng-repeat ="x in objects" >{{x.id}}</option>
+                                                    <div class="col-md-6 col-sm-4 col-xs-6" >
+                                                        <select class="select2_group form-control" name="Devise" ng-model="codeDevise" required="true">
+                                                            <optgroup label="Selectionner une devise">
+                                                                <option></option>
+                                                            <option ng-repeat="a in allDevise track by $index" value="{{a.codeDevise}}" >{{a.libDevise}}</option>
+                                                            </optgroup>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.username.$invalid &amp;&amp; !userForm.username.$pristine }">
+                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.nomBenef.$invalid &amp;&amp; !userForm.nomBenef.$pristine }">
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Beneficiaire</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                        <select class="select2_group form-control" name="username" ng-model="user.username" required="true">
-                                                            <option ng-repeat ="x in objects">{{x.username}}</option>
+                                                        <select class="select2_group form-control" name="nomBenef" ng-model="nomBenef" required="true">
+                                                            <optgroup label="Selectionner une beneficiaire">
+                                                                <option></option>
+                                                            <option ng-repeat="a in benefDoss track by $index" value="{{a.beneficiairesPK.noPieceBenef}}" >{{a.nomBenef}}</option>
+                                                            </optgroup>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.name.$invalid &amp;&amp; !userForm.name.$pristine }">
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Mode</label>
+                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.modeP.$invalid &amp;&amp; !userForm.modeP.$pristine }">
+                                                    <label class="control-label col-md-3 col-sm-4 col-xs-10">Mode de paiement</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                        <select class="select2_group form-control" name="name" ng-model="user.name" required="true">
-                                                            <option ng-repeat ="x in objects">{{x.name}}</option>
+                                                        <select class="select2_group form-control" name="modeP" ng-model="user.name" required="true">
+                                                            <optgroup label="Selection le mode de paiement">
+                                                                <option></option>
+                                                            <option ng-repeat ="a in modePaie track by $index" value="{{a.codeModePaiement}}">{{a.libModePaiement}}</option>
+                                                            </optgroup>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.suite.$invalid &amp;&amp; !userForm.suite.$pristine }">
+                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.pays.$invalid &amp;&amp; !userForm.pays.$pristine }">
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Pays</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                        <select class="select2_group form-control" name="suite" ng-model="user.suite" required="true">
-                                                            <option ng-repeat ="x in objects">{{x.address.suite}}</option>
+                                                        <select class="select2_group form-control" name="pays" ng-model="user.suite" required="true">
+                                                            <optgroup label="Selectionner un pays">
+                                                                <option></option>
+                                                            <option ng-repeat ="p in pays">{{p.libPays}}</option>
+                                                            </optgroup>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.website.$invalid &amp;&amp; !userForm.website.$pristine }">
+                                                <div class="form-group"  ng-class="{ 'has-error' : userForm.AgenceR.$invalid &amp;&amp; !userForm.AgenceR.$pristine }">
                                                     <label class="control-label col-md-3 col-sm-4 col-xs-10">Agence reception argent</label>
                                                     <div class="col-md-6 col-sm-4 col-xs-6">
-                                                        <select class="select2_group form-control" name="website" ng-model="user.website" required="true">
-                                                            <option ng-repeat ="x in objects">{{x.website}}</option>
+                                                        <select class="select2_group form-control" name="AgenceR" ng-model="user.website" required="true">
+                                                            <optgroup label="Selectionner une agence">
+                                                                <option></option>
+                                                            <option ng-repeat ="a in allAgenceCodeBanque track by $index" value="{{a.agencePK.codeAgenceBct}}">{{a.libAgence}}</option>
+                                                            </optgroup>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-12" >
-                                                    <div class="form-group col-md-4" style="float:left;margin-right: 0;" ng-class="{ 'has-error' : userForm.Mnt.$invalid &amp;&amp; !userForm.Mnt.$pristine }">
+                                                    <div class="form-group col-md-4" style="float:left;margin-right: 0;" ng-class="{ 'has-error' : userForm.Montant.$invalid &amp;&amp; !userForm.Montant.$pristine }">
                                                         <label class="control-label col-md-3 col-sm-4 col-xs-10">Montant</label>
                                                         <div class="col-md-8 col-sm-4 col-xs-6" >
-                                                            <input type="text" class="form-control col-md-7 col-xs-12" name="Mnt"  ng-model="user.Mnt" format="number"  required="true"/>
+                                                            <input type="text" class="form-control col-md-7 col-xs-12" name="Montant"  ng-model="user.Mnt" format="number"  required="true"/>
                                                             <p ng-show="userForm.Mnt.$invalid &amp;&amp; !userForm.Mnt.$pristine" class="help-block">Le montant est obligatoire</p>
                                                         </div>
                                                     </div>

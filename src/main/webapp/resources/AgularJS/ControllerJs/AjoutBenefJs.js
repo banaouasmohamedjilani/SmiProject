@@ -2,7 +2,7 @@
 /*
  * Controlleur ouverture dossier
  */
-myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver, $q, $http, $cookieStore,$window) {
+myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver, $q, $http, $cookieStore) {
     $scope.newUser = {};
     $scope.users = [];//bénéficiaires
     $scope.isdisabled = true;
@@ -54,14 +54,14 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
     });
     
     $scope.verifExist = function(){
-         if($scope.vExist){
-             return true;
-         }else{
+         if($scope.vExist === true){
+            
              window.alert("Desole vous avez deja un dossier actif\n\
  vous allez etre redirigee vers l'acceuil \n\
  Merci");
           window.location.pathname="/SmiProject-1/Acceuil.xhtml";
       }
+      return false;
     };
 
     $scope.checkVide = function () {
@@ -92,6 +92,7 @@ myApp.controller("myController", function ($rootScope, $scope, objectsRetreiver,
     $scope.save = function () {
         if (($scope.newUser.typePieceBenef !== null) && ($scope.newUser.noPieceBenef !== null) && ($scope.newUser.datePiece !== null) && ($scope.newUser.nomBenef !== null) && ($scope.newUser.adresseBenef !== null) && ($scope.newUser.qualite !== null) && ($scope.newUser.etat !== null)) {
             if ($scope.index === null) {
+                console.log($scope.newUser.datePiece);
                 var user = {
                     "beneficiairesMvtPK": {
                         "codeProduitService": 108,

@@ -26,6 +26,7 @@ import org.primefaces.model.menu.DefaultSeparator;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 import javax.faces.bean.RequestScoped;
+import smi.Config.donneegenerale;
 
 @ManagedBean
 @RequestScoped
@@ -33,6 +34,9 @@ public class MenubarManagedBean {
 
     private MenuModel menubar = new DefaultMenuModel();
     private String url = "http://localhost:7258/SMI_Server";
+    private donneegenerale donneegenerale = new donneegenerale();
+    private final Short codeBanque = donneegenerale.getCodeBanque();
+    private String libBanque = donneegenerale.getLibBanque();
 
     public String getUser() {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -206,6 +210,18 @@ public class MenubarManagedBean {
         this.menubar.addElement(serv);
         this.menubar.addElement(notif);
         this.menubar.addElement(swifts);
+    }
+
+    public donneegenerale getDonneegenerale() {
+        return donneegenerale;
+    }
+
+    public Short getCodeBanque() {
+        return codeBanque;
+    }
+
+    public String getLibBanque() {
+        return libBanque;
     }
 
     public MenuModel getMenubar() {
